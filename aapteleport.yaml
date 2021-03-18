@@ -1,0 +1,31 @@
+teleport:
+  auth_token: application_auth_token
+  ca_pin: sha256:0000000000000000000000000000000000000000000000000000000000000000
+  auth_servers:
+    - teleport.example.com:3080
+
+auth_service:
+  enabled: no
+
+proxy_service:
+  enabled: no  
+
+#db_service:
+#  enabled: no  
+
+ssh_service:
+  enabled: no
+
+kubernetes_service:
+  enabled: no  
+
+app_service:
+  enabled: yes
+  debug_app: true
+  apps:
+  - name: aaptest3
+    uri: "http://web:8000"
+    insecure_skip_verify: true
+    rewrite:
+      redirect:
+        - "localhost"

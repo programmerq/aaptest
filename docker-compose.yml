@@ -1,0 +1,17 @@
+version: "3"
+services:
+    web:
+        deploy:
+          replicas: 1
+          restart_policy: 
+            condition: on-failure
+        build: web
+        restart: unless-stopped
+    app:
+        volumes: 
+          - /var/lib/teleport
+          - ./aapteleport.yaml:/etc/teleport.yaml:ro
+        image: quay.io/gravitational/teleport-ent:5.1.2
+        entrypoint: "teleport"
+        hostname: scaletest
+        command: "start -d"
